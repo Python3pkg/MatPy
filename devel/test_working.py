@@ -29,7 +29,7 @@ def minimize_suite(function, methods, guess):
 			cur_result = minimize(function, x0 = guess, method = method, tol=1e-6) 
 			result.append(cur_result)
 
-			keys = cur_result.keys() # contains all traits of result
+			keys = list(cur_result.keys()) # contains all traits of result
 			iterations = -1
 
 			if 'nit' in keys:    
@@ -50,6 +50,6 @@ def minimize_suite(function, methods, guess):
 # If an algorithm took (-1) iterations, the number of iterations was not returned
 	for counter, method in enumerate(methods):
 
-		print '{0} took {1} seconds. The result, {4} was found at ({2}, {3})'.format(method,exec_time[counter],result[counter].x[0],result[counter].x[1],result[counter].fun)
-		print '{0} used {1} megabytes and took {2} iterations'.format(method,most_mem[counter],num_iters[counter])
-		print
+		print('{0} took {1} seconds. The result, {4} was found at ({2}, {3})'.format(method,exec_time[counter],result[counter].x[0],result[counter].x[1],result[counter].fun))
+		print('{0} used {1} megabytes and took {2} iterations'.format(method,most_mem[counter],num_iters[counter]))
+		print()

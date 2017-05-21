@@ -25,7 +25,7 @@ class StressStrain:
 	def __init__(self,data_file=None,type='txt'):
 				
 		if data_file is None:
-			print "This thermodynamics model doesn't \n currently have experimental data associated with it."
+			print("This thermodynamics model doesn't \n currently have experimental data associated with it.")
 			self.exp=None
 			return
 				
@@ -35,7 +35,7 @@ class StressStrain:
 	def get_experimental_data(self):
 		
 		if self.exp is None:
-			print "There is no experimental data associated with this instance"
+			print("There is no experimental data associated with this instance")
 			return None
 		
 		return self.exp

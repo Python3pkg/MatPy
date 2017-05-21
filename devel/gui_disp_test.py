@@ -3,19 +3,19 @@ Loads a stress-strain plot given a filename.
 """
 
 """Tkinter for GUI"""
-import Tkinter as tk
-from Tkinter import Entry
-import tkFileDialog
+import tkinter as tk
+from tkinter import Entry
+import tkinter.filedialog
 
 """Library for getting and plotting data"""
-import parser
-import graph_suite as plot
-import material_analytics
+from . import parser
+from . import graph_suite as plot
+from . import material_analytics
 
 """Data handlers"""
-import irreversible_stressstrain
-from irreversible_stressstrain import StressStrain as strainmodel
-import optimization_suite
+from . import irreversible_stressstrain
+from .irreversible_stressstrain import StressStrain as strainmodel
+from . import optimization_suite
 from scipy.optimize import basinhopping
 from scipy.optimize import brute
 from pybrain.optimization import GA
@@ -25,7 +25,7 @@ from pybrain.optimization import GA
 def update():
 
 	"""Opens file browser and gets selection"""
-	name = tkFileDialog.askopenfilename()
+	name = tkinter.filedialog.askopenfilename()
 	
 	"""Creates model for data"""
 	if 'xml' in name:

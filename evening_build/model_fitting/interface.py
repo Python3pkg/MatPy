@@ -3,9 +3,9 @@ Loads a stress-strain plot given a filename.
 """
 
 """Tkinter for GUI"""
-import Tkinter as tk
-from Tkinter import Entry
-import tkFileDialog
+import tkinter as tk
+from tkinter import Entry
+import tkinter.filedialog
 
 """Library for getting and plotting data"""
 import parser
@@ -24,7 +24,7 @@ def update():
     """Display the plot of the file with its yield point"""
 
     """Opens file browser and gets selection"""
-    name = tkFileDialog.askopenfilename()
+    name = tkinter.filedialog.askopenfilename()
     
     """Creates model for data"""
     if 'xml' in name:

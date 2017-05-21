@@ -509,7 +509,7 @@ def get_slopes(model):
     slopes = []
 
     """Approximating the partial derivatives of stress/strain"""
-    for index in xrange(len(stress)-1):
+    for index in range(len(stress)-1):
 
         rise = (stress[index+1]-stress[index])
         run = (strain[index+1]-strain[index])

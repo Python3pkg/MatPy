@@ -150,7 +150,7 @@ def minimize_suite(function, methods, guess):
 			cur_result = minimize(function, x0 = guess, method = method, tol=1e-6) 
 			result.append(cur_result)
 
-			keys = cur_result.keys() # contains all traits of result
+			keys = list(cur_result.keys()) # contains all traits of result
 			iterations = -1
 
 			if 'nit' in keys:    
@@ -170,9 +170,9 @@ def minimize_suite(function, methods, guess):
 	# If an algorithm took (-1) iterations, the number of iterations was not returned
 	for counter, method in enumerate(methods):
 
-		print '{0} took {1} seconds. The result, {4} was found at ({2}, {3})'.format(method,exec_time[counter],result[counter].x[0],result[counter].x[1],result[counter].fun)
-		print '{0} used {1} megabytes and took {2} iterations'.format(method,most_mem[counter],num_iters[counter])
-		print
+		print('{0} took {1} seconds. The result, {4} was found at ({2}, {3})'.format(method,exec_time[counter],result[counter].x[0],result[counter].x[1],result[counter].fun))
+		print('{0} used {1} megabytes and took {2} iterations'.format(method,most_mem[counter],num_iters[counter]))
+		print()
 
 
 # For custom minimization methods in SciPy, like basinhopping, where the returned object provides more information
@@ -193,7 +193,7 @@ def custom_minimize(function, algorithm, bounds = None, guess = None):
 
 		iterations = -1
 
-		if 'nit' in result.keys():    
+		if 'nit' in list(result.keys()):    
 			iterations = result.get('nit')
 
 		stop = timeit.default_timer()
@@ -206,9 +206,9 @@ def custom_minimize(function, algorithm, bounds = None, guess = None):
 
 	exec_time = stop-start
 
-	print '{0} took {1} seconds. The result, {2} was found at ({3})'.format(algorithm.__name__,exec_time,result.fun,result.x)
-	print '{0} used {1} megabytes and took {2} iterations'.format(algorithm.__name__,most_mem,num_iters)
-	print
+	print('{0} took {1} seconds. The result, {2} was found at ({3})'.format(algorithm.__name__,exec_time,result.fun,result.x))
+	print('{0} used {1} megabytes and took {2} iterations'.format(algorithm.__name__,most_mem,num_iters))
+	print()
 	
 # Our workaround for evaluating GA performance
 def GA_minimize(function, guess):
@@ -221,13 +221,13 @@ def GA_minimize(function, guess):
     mem = max(memory_usage((result.learn,(),)))
     stop = timeit.default_timer()
     
-    print result.learn() #Comment this out for faster performance, i.e. for evaluation
+    print(result.learn()) #Comment this out for faster performance, i.e. for evaluation
 
     exec_time = stop-start
 
-    print '{0} took {1} seconds'.format('Genetic Algorithm',exec_time)
-    print '{0} used {1} megabytes'.format('Genetic Algorithm',mem)
-    print
+    print('{0} took {1} seconds'.format('Genetic Algorithm',exec_time))
+    print('{0} used {1} megabytes'.format('Genetic Algorithm',mem))
+    print()
 
 	
 

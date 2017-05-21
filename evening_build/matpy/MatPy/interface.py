@@ -7,28 +7,28 @@ import warnings
 warnings.filterwarnings("ignore")
 
 """Tkinter for GUI"""
-import Tkinter as tk
-from Tkinter import Entry
-import tkFileDialog
-from Tkinter import N, S, E, W
+import tkinter as tk
+from tkinter import Entry
+import tkinter.filedialog
+from tkinter import N, S, E, W
 
 """Library for getting data"""
-import parser
+from . import parser
 
 """Must explicitly enable this for GUI to work"""
 import matplotlib
 matplotlib.use("TkAgg")
 
 """Library for plotting data"""
-import graph_suite as plot
+from . import graph_suite as plot
 
 """Data handlers"""
-import material_analytics
-import irreversible_stressstrain
-from irreversible_stressstrain import StressStrain as strainmodel
+from . import material_analytics
+from . import irreversible_stressstrain
+from .irreversible_stressstrain import StressStrain as strainmodel
 
 """Optimization tools for model training"""
-import optimization_suite
+from . import optimization_suite
 from scipy.optimize import basinhopping
 from scipy.optimize import brute
 from pybrain.optimization import GA
@@ -37,7 +37,7 @@ def getfile():
     """Returns the model selected by the user (contained in a data file)"""
     
     """Opens file browser and gets selection"""
-    name = tkFileDialog.askopenfilename()
+    name = tkinter.filedialog.askopenfilename()
     
     """Creates model for data"""
     if 'xml' in name:

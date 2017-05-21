@@ -49,7 +49,7 @@ def minimize_suite(function, methods, guess, SS_stress=None, tol=1.0):
 
             result.append(cur_result)
 
-            keys = cur_result.keys() # contains all traits of result
+            keys = list(cur_result.keys()) # contains all traits of result
             iterations = -1
 
             # if the number of iterations is contained in the result object
@@ -72,9 +72,9 @@ def minimize_suite(function, methods, guess, SS_stress=None, tol=1.0):
     # If an algorithm took (-1) iterations, the number of iterations was not returned
     for counter, method in enumerate(methods):
 
-        print '{0} took {1} seconds. The result, {4} was found at ({2}, {3})'.format(method,exec_time[counter],result[counter].x[0],result[counter].x[1],result[counter].fun)
-        print '{0} used {1} megabytes and took {2} iterations'.format(method,most_mem[counter],num_iters[counter])
-        print 
+        print('{0} took {1} seconds. The result, {4} was found at ({2}, {3})'.format(method,exec_time[counter],result[counter].x[0],result[counter].x[1],result[counter].fun))
+        print('{0} used {1} megabytes and took {2} iterations'.format(method,most_mem[counter],num_iters[counter]))
+        print() 
         
     # if we are working with stress/strain data, we return the first optimal model parameters
     if SS_stress:
@@ -111,7 +111,7 @@ def custom_minimize(function, algorithm, bounds = None, guess = None):
 
         iterations = -1
 
-        if 'nit' in result.keys():    
+        if 'nit' in list(result.keys()):    
             iterations = result.get('nit')
 
         stop = timeit.default_timer()
@@ -126,9 +126,9 @@ def custom_minimize(function, algorithm, bounds = None, guess = None):
 
     exec_time = stop-start
 
-    print '{0} took {1} seconds. The result, {2} was found at ({3})'.format(algorithm.__name__,exec_time,result.fun,result.x)
-    print '{0} used {1} megabytes and took {2} iterations'.format(algorithm.__name__,most_mem,num_iters)
-    print
+    print('{0} took {1} seconds. The result, {2} was found at ({3})'.format(algorithm.__name__,exec_time,result.fun,result.x))
+    print('{0} used {1} megabytes and took {2} iterations'.format(algorithm.__name__,most_mem,num_iters))
+    print()
 
 # Our workaround for evaluating GA performance, needs its own method because it is separate in the PyBrain module and takes different parameters
 def GA_minimize(function, guess):
@@ -144,13 +144,13 @@ def GA_minimize(function, guess):
     start = timeit.default_timer()
     mem = max(memory_usage(-1,interval=.1))
     
-    print "The result is: ", result.learn()
+    print("The result is: ", result.learn())
     stop = timeit.default_timer()
     
     exec_time = stop-start
 
-    print '{0} took {1} seconds'.format('Genetic Algorithm',exec_time)
-    print '{0} used {1} megabytes'.format('Genetic Algorithm',mem)
-    print
+    print('{0} took {1} seconds'.format('Genetic Algorithm',exec_time))
+    print('{0} used {1} megabytes'.format('Genetic Algorithm',mem))
+    print()
     
     return result
